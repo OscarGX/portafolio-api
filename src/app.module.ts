@@ -13,10 +13,12 @@ import {
   DATABASE_PASSWORD,
   DATABASE_NAME,
 } from './config/config.constants';
+import { TagsModule } from './app/tags/tags.module';
 
 @Module({
   imports: [
     AuthModule,
+    TagsModule,
     MapperModule,
     ConfigModule.forRoot({
       load: [configuration],
