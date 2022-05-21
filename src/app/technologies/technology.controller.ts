@@ -8,24 +8,24 @@ import {
 } from '@nestjs/common';
 import { API_BASE_URL } from 'src/common/constants/route.constant';
 import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';
-import { TagService } from './services/tag.service';
-import { TagCreateDTO } from './dto';
+import { TechnologyService } from './services/technology.service';
+import { TechnologyCreateDTO } from './dto';
+import { RoleEnum } from '../../data/enums/rol.enum';
 import { Roles } from '../auth/decorators/rol.decorator';
 import { UseGuards } from '@nestjs/common';
-import { RoleEnum } from '../../data/enums/rol.enum';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { RoleGuard } from '../auth/guards/role.guard';
 
-@ApiTags('Tags')
-@Controller(`${API_BASE_URL}/tags`)
-export class TagsController {
-  constructor(private readonly _tagService: TagService) {}
+@ApiTags('Technologies')
+@Controller(`${API_BASE_URL}/technologies`)
+export class TechnologyController {
+  constructor(private readonly _techService: TechnologyService) {}
 
   @Get('')
   public async getAll() {
     try {
-      const tags = await this._tagService.getAll();
-      return tags;
+      const techs = await this._techService.getAll();
+      return techs;
     } catch (error) {
       throw new HttpException(
         'Something went wrong',
@@ -38,10 +38,10 @@ export class TagsController {
   @Roles(RoleEnum.ADMIN)
   @UseGuards(JwtAuthGuard, RoleGuard)
   @Post('')
-  public async createOne(@Body() body: TagCreateDTO) {
+  public async createOne(@Body() body: TechnologyCreateDTO) {
     try {
-      const tag = await this._tagService.createOne(body);
-      if (tag) return tag;
+      const tech = await this._techService.createOne(body);
+      if (tech) return tech;
       throw new HttpException(
         'Something went wrong',
         HttpStatus.INTERNAL_SERVER_ERROR,

@@ -14,11 +14,13 @@ import {
   DATABASE_NAME,
 } from './config/config.constants';
 import { TagsModule } from './app/tags/tags.module';
+import { TechnologyModule } from './app/technologies/technology.module';
 
 @Module({
   imports: [
     AuthModule,
     TagsModule,
+    TechnologyModule,
     MapperModule,
     ConfigModule.forRoot({
       load: [configuration],
