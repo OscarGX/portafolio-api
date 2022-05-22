@@ -15,12 +15,16 @@ import {
 } from './config/config.constants';
 import { TagsModule } from './app/tags/tags.module';
 import { TechnologyModule } from './app/technologies/technology.module';
+import { ProjectModule } from './app/projects/project.module';
+import { ProjectRepositoryModule } from './app/repos/project-repository.module';
 
 @Module({
   imports: [
     AuthModule,
     TagsModule,
     TechnologyModule,
+    ProjectModule,
+    ProjectRepositoryModule,
     MapperModule,
     ConfigModule.forRoot({
       load: [configuration],

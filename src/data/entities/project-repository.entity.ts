@@ -50,7 +50,6 @@ export class ProjectRepository {
   public: boolean;
 
   @ManyToOne(() => Project, (project) => project.repos, {
-    cascade: ['insert', 'remove'],
     onDelete: 'CASCADE',
   })
   @JoinColumn()

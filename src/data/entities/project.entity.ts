@@ -82,6 +82,9 @@ export class Project {
   })
   technologies: Technology[];
 
-  @OneToMany(() => ProjectRepository, (repo) => repo.project)
+  @OneToMany(() => ProjectRepository, (repo) => repo.project, {
+    eager: true,
+    cascade: ['insert', 'remove'],
+  })
   repos: ProjectRepository[];
 }
